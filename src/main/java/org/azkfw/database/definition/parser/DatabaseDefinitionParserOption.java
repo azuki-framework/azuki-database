@@ -17,7 +17,6 @@
  */
 package org.azkfw.database.definition.parser;
 
-import org.azkfw.util.StringUtility;
 
 /**
  * @since 1.0.0
@@ -26,26 +25,7 @@ import org.azkfw.util.StringUtility;
  */
 public class DatabaseDefinitionParserOption {
 
-	private String schema;
-
 	public DatabaseDefinitionParserOption() {
-		schema = null;
-	}
-
-	public DatabaseDefinitionParserOption(final String schema) {
-		this.schema = schema;
-	}
-
-	public boolean isSchema() {
-		return StringUtility.isNotEmpty(schema);
-	}
-
-	public void setSchema(final String schema) {
-		this.schema = schema;
-	}
-
-	public String getSchema() {
-		return schema;
 	}
 
 }

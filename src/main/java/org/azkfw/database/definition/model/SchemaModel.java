@@ -15,32 +15,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.azkfw.database.definition.parser;
-
-import java.sql.Connection;
-
-import org.azkfw.database.definition.DatabaseDefinition;
-import org.azkfw.database.definition.MySQLDefinition;
+package org.azkfw.database.definition.model;
 
 /**
- * このクラスは、MySQLデータベース定義の解析を行うクラスです。
+ * このクラスは、スキーマ情報を保持するモデルクラスです。
  * 
  * @since 1.0.0
- * @version 1.0.0 2015/02/06
+ * @version 1.0.0 2015/03/03
  * @author kawakicchi
  */
-public class MySQLDefinitionParser extends AbstractDatabaseDefinitionParser {
+public class SchemaModel {
+
+	/** スキーマ名 */
+	private String name;
 
 	/**
 	 * コンストラクタ
 	 */
-	public MySQLDefinitionParser() {
-		super(MySQLDefinitionParser.class);
+	public SchemaModel() {
+		name = null;
 	}
 
-	@Override
-	protected DatabaseDefinition getDefinition(final Connection connection) {
-		return new MySQLDefinition(connection);
+	/**
+	 * スキーマ名を設定する。
+	 * 
+	 * @param name スキーマ名
+	 */
+	public void setName(final String name) {
+		this.name = name;
 	}
 
+	/**
+	 * スキーマ名を取得する。
+	 * 
+	 * @return スキーマ名
+	 */
+	public String getName() {
+		return name;
+	}
 }
