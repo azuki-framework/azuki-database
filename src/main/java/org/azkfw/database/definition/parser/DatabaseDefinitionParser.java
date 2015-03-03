@@ -31,13 +31,44 @@ import org.azkfw.database.definition.model.DatabaseModel;
  */
 public interface DatabaseDefinitionParser {
 
+	/**
+	 * 解析オプションを設定する。
+	 * 
+	 * @param option オプション
+	 */
 	public void setOption(final DatabaseDefinitionParserOption option);
 
+	/**
+	 * リスナーを追加する。
+	 * 
+	 * @param listener リスナー
+	 */
 	public void addListener(final DatabaseDefinitionParserListener listener);
 
+	/**
+	 * リスナーを削除する。
+	 * 
+	 * @param listener リスナー
+	 */
 	public void removeListener(final DatabaseDefinitionParserListener listener);
 
+	/**
+	 * データベース定義を解析する。
+	 * 
+	 * @param driver ドライバ名
+	 * @param url 接続URL
+	 * @param user　ユーザ
+	 * @param password パスワード
+	 * @return データベース情報
+	 */
 	public DatabaseModel parse(final String driver, final String url, final String user, final String password);
 
+	/**
+	 * データベース定義を解析する。
+	 * 
+	 * @param connection コネクション情報
+	 * @return データベース情報
+	 * @throws SQLException SQL操作に起因する問題が発生した場合
+	 */
 	public DatabaseModel parse(final Connection connection) throws SQLException;
 }

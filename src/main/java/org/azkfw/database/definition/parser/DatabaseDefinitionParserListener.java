@@ -26,7 +26,17 @@ package org.azkfw.database.definition.parser;
  */
 public interface DatabaseDefinitionParserListener {
 
+	/**
+	 * 解析開始前に呼び出されるイベント。
+	 * 
+	 * @param event イベント情報
+	 */
 	public void databaseDefinitionParserStarted(final DatabaseDefinitionParserEvent event);
 
+	/**
+	 * 解析終了後に呼び出されるイベント。
+	 * 
+	 * @param event イベント情報
+	 */
 	public void databaseDefinitionParserFinished(final DatabaseDefinitionParserEvent event);
 }

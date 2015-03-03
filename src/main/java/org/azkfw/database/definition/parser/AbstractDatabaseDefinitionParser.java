@@ -108,6 +108,10 @@ public abstract class AbstractDatabaseDefinitionParser extends LoggingObject imp
 			Class.forName(driver);
 			connection = DriverManager.getConnection(url, user, password);
 
+			if (null == option) {
+				option = new DatabaseDefinitionParserOption();
+			}
+
 			definition = getDefinition(connection);
 
 			DatabaseModel database = new DatabaseModel();
@@ -183,14 +187,22 @@ public abstract class AbstractDatabaseDefinitionParser extends LoggingObject imp
 	private void parseDatabase(final DatabaseModel database, final Connection connection) throws SQLException {
 		List<SchemaModel> schemas = definition.getSchemaList();
 		for (SchemaModel schema : schemas) {
-			parseDatabase(database, schema, connection);
+			if (option.isEnableSchema(schema)) {
+				parseDatabase(database, schema, connection);
+			} else {
+				debug(String.format("Exclude schema.[%s]", schema.getName()));
+			}
 		}
 	}
 
 	private void parseDatabase(final DatabaseModel database, final SchemaModel schema, final Connection connection) throws SQLException {
 		List<TableModel> tables = definition.getTableList(schema);
 		for (TableModel table : tables) {
-			database.addTable(table);
+			if (option.isEnableTable(table)) {
+				database.addTable(table);
+			} else {
+				debug(String.format("Exclude table.[%s.%s]", table.getSchema().getName(), table.getName()));
+			}
 		}
 	}
 }
