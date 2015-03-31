@@ -33,7 +33,7 @@ public final class TableModel {
 	private String label;
 
 	/** スキーマ */
-	private String schema;
+	private SchemaModel schema;
 
 	/** テーブル名 */
 	private String name;
@@ -86,7 +86,7 @@ public final class TableModel {
 	 * 
 	 * @param schema スキーマ
 	 */
-	public void setSchema(final String schema) {
+	public void setSchema(final SchemaModel schema) {
 		this.schema = schema;
 	}
 
@@ -95,7 +95,7 @@ public final class TableModel {
 	 * 
 	 * @return スキーマ
 	 */
-	public String getSchema() {
+	public SchemaModel getSchema() {
 		return schema;
 	}
 
