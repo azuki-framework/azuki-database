@@ -17,6 +17,6 @@
  */
 
 /**
- * 
+ * データベース定義関連のクラスおよびインタフェースを提供します。
  */
 package org.azkfw.database.definition;
