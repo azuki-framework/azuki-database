@@ -32,18 +32,13 @@ public class PostgreSQLDefinitionParserTest extends TestCase {
 
 	@Test
 	public void test() {
-		DatabaseDefinitionParserOption opt = new DatabaseDefinitionParserOption();
-		opt.setSchema("public");
-		
-		PostgreSQLDefinitionParser parser = new PostgreSQLDefinitionParser();
-		
-		parser.setOption(opt);
+		PostgreSQLDefinitionParser parser = new PostgreSQLDefinitionParser();		
 		DatabaseModel model = parser.parse("org.postgresql.Driver", "jdbc:postgresql://localhost/db_test", "tester", "test");
 
 		assertNotNull("インスタンス", model);
 
 		for (TableModel table : model.getTables()) {
-			System.out.println(table);
+			System.out.println(table.getName());
 		}
 	}
 }
