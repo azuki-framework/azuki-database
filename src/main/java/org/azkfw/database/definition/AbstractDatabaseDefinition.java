@@ -32,7 +32,7 @@ import org.azkfw.database.definition.model.IndexFieldModel;
 import org.azkfw.database.definition.model.IndexModel;
 import org.azkfw.database.definition.model.SchemaModel;
 import org.azkfw.database.definition.model.TableModel;
-import org.azkfw.lang.LoggingObject;
+import org.azkfw.log.LoggingObject;
 import org.azkfw.util.StringUtility;
 
 /**
@@ -44,11 +44,17 @@ import org.azkfw.util.StringUtility;
  */
 public abstract class AbstractDatabaseDefinition extends LoggingObject implements DatabaseDefinition {
 
+	/** Connection */
 	private Connection connection;
 
+	/**
+	 * コンストラクタ
+	 * 
+	 * @param clazz クラス
+	 * @param connection コネクション
+	 */
 	public AbstractDatabaseDefinition(final Class<?> clazz, final Connection connection) {
 		super(clazz);
-
 		this.connection = connection;
 	}
 
@@ -148,30 +154,6 @@ public abstract class AbstractDatabaseDefinition extends LoggingObject implement
 		}
 
 		return result;
-	}
-
-	protected final void release(final ResultSet rs) {
-		if (null != rs) {
-			try {
-				if (!rs.isClosed()) {
-					rs.close();
-				}
-			} catch (SQLException ex) {
-				warn(ex);
-			}
-		}
-	}
-
-	protected final void release(final PreparedStatement ps) {
-		if (null != ps) {
-			try {
-				if (!ps.isClosed()) {
-					ps.close();
-				}
-			} catch (SQLException ex) {
-				warn(ex);
-			}
-		}
 	}
 
 	/**
@@ -308,6 +290,30 @@ public abstract class AbstractDatabaseDefinition extends LoggingObject implement
 	 * @return SQL
 	 */
 	protected abstract String getForeignKeySQL();
+
+	protected void release(final ResultSet rs) {
+		if (null != rs) {
+			try {
+				if (!rs.isClosed()) {
+					rs.close();
+				}
+			} catch (SQLException ex) {
+				warn(ex);
+			}
+		}
+	}
+
+	protected void release(final PreparedStatement ps) {
+		if (null != ps) {
+			try {
+				if (!ps.isClosed()) {
+					ps.close();
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
 
 	private void parseTable(final TableModel table, final Connection connection) throws SQLException {
 		PreparedStatement ps = null;

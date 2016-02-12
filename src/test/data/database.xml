@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<azuki-database>
+
+	<datasource-list>
+		<datasource name="AA">
+			<driver>org.postgresql.Driver</driver>
+			<url>jdbc:postgresql://127.0.0.1:5432/db_crawler</url>
+			<user>crawler</user>
+			<password crypto="ture">test</password>
+		</datasource>
+		<datasource name="BB">
+			<driver>org.postgresql.Driver</driver>
+			<url>jdbc:postgresql://127.0.0.1:5432/db_crawler</url>
+			<user>crawler</user>
+			<password crypto="ture">test</password>
+		</datasource>
+	</datasource-list>
+
+</azuki-database>

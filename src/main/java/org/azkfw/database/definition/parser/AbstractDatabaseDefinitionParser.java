@@ -27,7 +27,7 @@ import org.azkfw.database.definition.DatabaseDefinition;
 import org.azkfw.database.definition.model.DatabaseModel;
 import org.azkfw.database.definition.model.SchemaModel;
 import org.azkfw.database.definition.model.TableModel;
-import org.azkfw.lang.LoggingObject;
+import org.azkfw.log.LoggingObject;
 
 /**
  * このクラスは、データベース定義解析を行う為の基底クラスです。
